@@ -40,6 +40,7 @@ class listener implements EventSubscriberInterface
 		$this->php_ext = $php_ext;
 		$this->template = $template;
 		$user->add_lang_ext('tas2580/pinterest', 'common');
+		$this->board_url = generate_board_url();
 	}
 
 	/**
@@ -77,14 +78,13 @@ class listener implements EventSubscriberInterface
 				'IMG_URL'		=> 'http' . $img,
 				'IMG'			=> urlencode('http' . $img),
 				'COMMENT'		=> '',
-				'URL'			=> urlencode($board_url . '/viewtopic.' . $this->php_ext .'?f=' . $event['forum_id'] . '&t=' . $event['topic_id'] . ($event['start'] <> 0 ? '&start=' . $event['start'] : '')),
+				'URL'			=> urlencode($this->board_url . '/viewtopic.' . $this->php_ext .'?f=' . $event['forum_id'] . '&t=' . $event['topic_id'] . ($event['start'] <> 0 ? '&start=' . $event['start'] : '')),
 			));
 		}
 	}
 
 	public function viewtopic_modify_post_data($event)
 	{
-		$board_url = generate_board_url();
 		$mime_types = array('image/png', 'image/jpeg');
 
 		foreach ($event['attachments'] as $attachments)
@@ -94,10 +94,10 @@ class listener implements EventSubscriberInterface
 				if (in_array($attachment['mimetype'], $mime_types))
 				{
 					$this->template->assign_block_vars('pin_images', array(
-						'IMG_URL'		=> $board_url .'/download/file.' . $this->php_ext . '?id=' . $attachment['attach_id'],
-						'IMG'			=> urlencode($board_url .'/download/file.' . $this->php_ext . '?id=' . $attachment['attach_id']),
+						'IMG_URL'		=> $this->board_url .'/download/file.' . $this->php_ext . '?id=' . $attachment['attach_id'],
+						'IMG'			=> urlencode($this->board_url .'/download/file.' . $this->php_ext . '?id=' . $attachment['attach_id']),
 						'COMMENT'		=> $attachment['attach_comment'],
-						'URL'			=> urlencode($board_url . '/viewtopic.' . $this->php_ext .'?f=' . $event['forum_id'] . '&t=' . $event['topic_id'] . ($event['start'] <> 0 ? '&start=' . $event['start'] : '')),
+						'URL'			=> urlencode($this->board_url . '/viewtopic.' . $this->php_ext .'?f=' . $event['forum_id'] . '&t=' . $event['topic_id'] . ($event['start'] <> 0 ? '&start=' . $event['start'] : '')),
 					));
 				}
 			}
