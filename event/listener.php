@@ -71,7 +71,7 @@ class listener implements EventSubscriberInterface
 		$post_row = $event['post_row'];
 		preg_match_all ('#src\=\"http(.*)\"#U', $post_row['MESSAGE'] ,$matches);
 
-		foreach($matches[1] as $img)
+		foreach ($matches[1] as $img)
 		{
 			$this->template->assign_block_vars('pin_images', array(
 				'IMG_URL'		=> 'http' . $img,
@@ -87,11 +87,11 @@ class listener implements EventSubscriberInterface
 		$board_url = generate_board_url();
 		$mime_types = array('image/png', 'image/jpeg');
 
-		foreach($event['attachments'] as $attachments)
+		foreach ($event['attachments'] as $attachments)
 		{
-			foreach($attachments as $attachment)
+			foreach ($attachments as $attachment)
 			{
-				if(in_array($attachment['mimetype'], $mime_types))
+				if (in_array($attachment['mimetype'], $mime_types))
 				{
 					$this->template->assign_block_vars('pin_images', array(
 						'IMG_URL'		=> $board_url .'/download/file.' . $this->php_ext . '?id=' . $attachment['attach_id'],
@@ -100,7 +100,6 @@ class listener implements EventSubscriberInterface
 						'URL'			=> urlencode($board_url . '/viewtopic.' . $this->php_ext .'?f=' . $event['forum_id'] . '&t=' . $event['topic_id'] . ($event['start'] <> 0 ? '&start=' . $event['start'] : '')),
 					));
 				}
-
 			}
 		}
 	}
