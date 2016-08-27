@@ -94,8 +94,6 @@ class listener implements EventSubscriberInterface
 	public function viewtopic_modify_post_data($event)
 	{
 		$mime_types = array('image/png', 'image/jpeg');
-
-
 		$enabled_forums = isset($this->config['socialbuttons_enable_forums']) ? explode(',', $this->config['socialbuttons_enable_forums']) : array();
 		$enable_buttons = ((isset($this->config['socialbuttons_enable']) && $this->config['socialbuttons_enable']) || in_array($event['forum_id'], $enabled_forums));
 		// Display the shares count
