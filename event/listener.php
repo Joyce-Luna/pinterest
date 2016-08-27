@@ -82,7 +82,6 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-	
 	public function viewtopic_modify_post_data($event)
 	{
 		$board_url = generate_board_url();
