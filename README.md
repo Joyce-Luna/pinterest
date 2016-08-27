@@ -2,6 +2,8 @@
 
 This is an extension for the phpBB forums software. You need an installation of phpBB 3.1.x to use this.
 
+This is an Addon for my Extension <a href="https://github.com/tas2580/socialbuttons">socialbuttons</a>, you need to install "socialbuttons" to use this extension!
+
 DESCRIPTION
 -------
 Allows user to share the images that are included in posts on pinterest.
