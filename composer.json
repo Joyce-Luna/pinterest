@@ -20,7 +20,8 @@
 	"extra": {
 		"display-name": "Pinterest",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.3"
+			"phpbb/phpbb": ">=3.1.3",
+			"tas2580/socialbuttons": ">=1.0.0"
 		},
 		"version-check": {
 			"host": "phpbb-versionscheck.cf",
