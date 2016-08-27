@@ -1,0 +1,9 @@
+services:
+    tas2580.pinterest.listener:
+        class: tas2580\pinterest\event\listener
+        arguments:
+            - %core.php_ext%
+            - @template
+            - @user
+        tags:
+            - { name: event.listener }
